@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.cs.mall.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.UserDO">
+        <!--@mbg.generated-->
+        <!--@Table message_record-->
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <insert id="register" parameterType="UserDO">
+        insert into user(phone,password) values (#{phone},#{password})
+    </insert>
+    <update id="update" parameterType="UserDO">
+        update user
+        <set>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+        </set>
+        where phone = #{phone}
+    </update>
+    <select id="selectByPhone" resultType="UserDO">
+        select * from user where phone = #{phone}
+    </select>
+
+
+</mapper>

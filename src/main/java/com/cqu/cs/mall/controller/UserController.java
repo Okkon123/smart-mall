@@ -4,31 +4,37 @@ import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.UserLoginReqDTO;
 import com.cqu.cs.mall.dto.req.UserRegisterReqDTO;
 import com.cqu.cs.mall.dto.req.UserUpdateReqDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.cqu.cs.mall.dto.resp.UserLoginRespDTO;
+import com.cqu.cs.mall.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
 
     @PostMapping("/login")
-    public Result<Void> login(@RequestBody UserLoginReqDTO userLoginReqDTO) {
-        return Result.success();
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO userLoginReqDTO) {
+        return Result.success(userService.login(userLoginReqDTO));
     }
 
     @PostMapping("/register")
-    public Result<Void> register(@RequestBody UserRegisterReqDTO userRegisterReqDTO) {
-        return Result.success();
+    public Result<String> register(@RequestBody UserRegisterReqDTO userRegisterReqDTO) {
+        userService.register(userRegisterReqDTO);
+        return Result.success("register success");
     }
 
     @GetMapping("/logout")
-    public Result<Void> logout() {
-        return Result.success();
+    public Result<String> logout() {
+        return Result.success("logout success");
     }
 
     @PostMapping("/update")
     public Result<Void> update(@RequestBody UserUpdateReqDTO userUpdateReqDTO) {
+        userService.update(userUpdateReqDTO);
         return Result.success();
     }
 }

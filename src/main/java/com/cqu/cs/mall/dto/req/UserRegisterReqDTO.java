@@ -4,8 +4,6 @@ import lombok.Data;
 
 @Data
 public class UserRegisterReqDTO {
-    private String account;
-    private String username;
+    private String phone;
     private String password;
-    private String email;
 }

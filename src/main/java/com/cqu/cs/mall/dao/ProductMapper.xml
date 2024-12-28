@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.cs.mall.dao.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.ProductDO">
+        <!--@mbg.generated-->
+        <!--@Table message_record-->
+        <id column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.cqu.cs.mall.domain.ProductDO">
+        insert into products
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            product_name,
+            <if test="description != null and description != ''">description,</if>
+            price,
+            <if test="categoryId != null">category_id,</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{productName},
+            <if test="description != null and description != ''">#{description},</if>
+            #{price},
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+        </trim>
+    </insert>
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM products WHERE product_id = #{productId}
+    </delete>
+
+
+</mapper>

@@ -1,34 +1,35 @@
 package com.cqu.cs.mall.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Timestamp;
 @Data
 @Accessors(chain = true)
-public class User {
-    private int id; // 用户id
-    private String accountId; // 账户id
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDO {
+    private int userId; // 用户id
     private String username; // 用户名
     private String password; // 密码
     private String email; // 邮箱
-    private Timestamp createdTime; // 创建时间
-    private Timestamp updatedTime; // 更新时间
-
-    // 无参构造函数
-    public User() {}
+    private String phone; // 手机号
+    private Timestamp createTime; // 创建时间
+    private Timestamp updateTime; // 更新时间
 
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", accountId='" + accountId + '\'' +
+                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", createdTime=" + createdTime +
-                ", updatedTime=" + updatedTime +
+                ", phone='" + phone + '\'' +
+                ", createdTime=" + createTime +
+                ", updatedTime=" + updateTime +
                 '}';
     }
 }

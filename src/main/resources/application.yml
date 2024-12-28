@@ -1,0 +1,23 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: mall
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://114.115.208.175:3309/cqu
+    username: root
+    password: yunfuwuxiaoguanjia
+mybatis:
+  #mapper配置文件
+  #mapper-locations: com.cqu.cs.mall.dao.*.xml
+  type-aliases-package: com.cqu.cs.mall.domain
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+mall:
+  alioss:
+    endpoint: oss-cn-wuhan-lr.aliyuncs.com
+    access-key-id: todo
+    access-key-secret: todo
+    bucket-name: web-skytakeaway

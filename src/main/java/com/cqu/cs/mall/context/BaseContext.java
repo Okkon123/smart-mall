@@ -2,13 +2,13 @@ package com.cqu.cs.mall.context;
 
 public class BaseContext {
 
-    public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
+    public static ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
-    public static void setCurrentId(Long id) {
-        threadLocal.set(id);
+    public static void setCurrentToken(String token) {
+        threadLocal.set(token);
     }
 
-    public static Long getCurrentId() {
+    public static String getCurrentToken() {
         return threadLocal.get();
     }
 
