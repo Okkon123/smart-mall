@@ -4,8 +4,9 @@
     <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.UserDO">
         <!--@mbg.generated-->
         <!--@Table message_record-->
-        <id column="user_id" jdbcType="INTEGER" property="userId"/>
-        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="reviewer_id" jdbcType="INTEGER" property="reviewerId"/>
+        <result column="reviewer_name" jdbcType="VARCHAR" property="reviewerName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
@@ -13,10 +14,11 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
     <insert id="register" parameterType="UserDO">
-        insert into user(phone,password) values (#{phone},#{password})
+        insert into t_user(phone,password,reviewer_id,reviewer_name) values (#{phone},#{password},#{reviewerId},#{reviewerName})
     </insert>
+
     <update id="update" parameterType="UserDO">
-        update user
+        update t_user
         <set>
             <if test="password != null and password != ''">
                 password = #{password},
@@ -24,14 +26,19 @@
             <if test="email != null and email != ''">
                 email = #{email},
             </if>
-            <if test="username != null and username != ''">
-                username = #{username},
+            <if test="reviewerName != null and reviewerName != ''">
+                reviewer_name = #{reviewerName},
             </if>
         </set>
-        where phone = #{phone}
+        where reviewer_id = #{reviewerId}
     </update>
+
     <select id="selectByPhone" resultType="UserDO">
-        select * from user where phone = #{phone}
+        select * from t_user where phone = #{phone}
+    </select>
+
+    <select id="selectByReviewerId" resultType="com.cqu.cs.mall.domain.UserDO">
+        select * from t_user where reviewer_id = #{reviewerId}
     </select>
 
 

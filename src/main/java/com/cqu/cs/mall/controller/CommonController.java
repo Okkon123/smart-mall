@@ -2,6 +2,7 @@ package com.cqu.cs.mall.controller;
 
 import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.util.AliOssUtil;
+import com.google.common.base.Throwables;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +29,23 @@ public class CommonController {
             String filePath = aliOssUtil.upload(file.getBytes(), objectName);
             return Result.success(filePath);
         } catch (IOException e) {
-            log.error("文件上传失败：{}", e);
+            log.error("文件上传失败：{}", Throwables.getStackTraceAsString(e));
         }
         return Result.fail("上传失败");
+    }
+
+    @PostMapping("/importUserByExcel")
+    public Result<Void> importUserByExcel(MultipartFile file) {
+        return Result.success();
+    }
+
+    @PostMapping("/importCommentByExcel")
+    public Result<Void> importCommentByExcel(MultipartFile file) {
+        return Result.success();
+    }
+
+    @PostMapping("/importProductByExcel")
+    public Result<Void> importProductByExcel(MultipartFile file) {
+        return Result.success();
     }
 }

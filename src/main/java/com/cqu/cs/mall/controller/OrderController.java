@@ -1,23 +1,28 @@
 package com.cqu.cs.mall.controller;
 
 import com.cqu.cs.mall.dto.Result;
+import com.cqu.cs.mall.dto.req.CreateOrderReqDTO;
+import com.cqu.cs.mall.dto.resp.CreateOrderRespDTO;
+import com.cqu.cs.mall.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
+    private final OrderService orderService;
 
-    @GetMapping("/create")
-    public Result<Void> createOrder() {
-        return null;
+    @PostMapping("/create")
+    public Result<List<CreateOrderRespDTO>> createOrder(@RequestBody CreateOrderReqDTO param) {
+        return Result.success(orderService.createOrder(param));
     }
 
-    @GetMapping("/list")
-    public Result<Void> listOrder() {
+    @GetMapping("/page")
+    public Result<Void> pageOrder() {
         return null;
     }
 

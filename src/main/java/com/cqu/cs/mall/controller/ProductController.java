@@ -25,8 +25,8 @@ public class ProductController {
         return Result.success();
     }
 
-    @GetMapping("list")
-    public Result<Void> listProduct() {
+    @GetMapping("page")
+    public Result<Void> pageProduct() {
         return null;
     }
 

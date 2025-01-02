@@ -9,4 +9,6 @@ public interface ProductMapper {
     int insert(ProductDO productDO);
 
     int deleteById(int productId);
+
+    ProductDO selectById(int productId);
 }

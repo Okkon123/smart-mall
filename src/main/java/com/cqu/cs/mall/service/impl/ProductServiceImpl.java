@@ -7,8 +7,12 @@ import com.cqu.cs.mall.dto.req.AddProductReqDTO;
 import com.cqu.cs.mall.dto.req.DeleteProductReqDTO;
 import com.cqu.cs.mall.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -16,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addProduct(AddProductReqDTO addProductReqDTO) {
         ProductDO productDO = BeanUtil.copyProperties(addProductReqDTO, ProductDO.class);
+        productDO.setAsin(UUID.randomUUID().toString().replace("-", ""));
         productMapper.insert(productDO);
     }
 
@@ -24,5 +29,10 @@ public class ProductServiceImpl implements ProductService {
         for (int productId : deleteProductReqDTO.getProductIdList()) {
             productMapper.deleteById(productId);
         }
+    }
+
+    @Override
+    public ProductDO getProductById(int productId) {
+        return productMapper.selectById(productId);
     }
 }

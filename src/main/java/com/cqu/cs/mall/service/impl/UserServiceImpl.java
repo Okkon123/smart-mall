@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
             throw new ClientException(USER_PHONE_EXIST_ERROR);
         }
         UserDO userDO = BeanUtil.toBean(userRegisterReqDTO, UserDO.class);
+        userDO.setReviewerId(userRegisterReqDTO.getPhone());
+        userDO.setReviewerName(userRegisterReqDTO.getPhone());
         int num = userMapper.register(userDO);
         if (num != 1) {
             throw new ServiceException(USER_REGISTER_ERROR);
@@ -40,18 +42,19 @@ public class UserServiceImpl implements UserService {
         if (!hasPhone(userLoginReqDTO.getPhone())) {
             throw new ClientException(USER_NOT_EXIST_ERROR);
         }
-        String password = userMapper.selectByPhone(userLoginReqDTO.getPhone()).getPassword();
+        UserDO userDO = userMapper.selectByPhone(userLoginReqDTO.getPhone());
+        String password = userDO.getPassword();
         if (!StringUtils.equals(password, userLoginReqDTO.getPassword())) {
             throw new ClientException(PASSWORD_WRONG_ERROR);
         }
-        return new UserLoginRespDTO().setToken(userLoginReqDTO.getPhone());
+        return new UserLoginRespDTO().setToken(userDO.getReviewerId());
     }
 
     @Override
     public void update(UserUpdateReqDTO userUpdateReqDTO) {
-        String phone = BaseContext.getCurrentToken();
+        String reviewerId = BaseContext.getCurrentToken();
         UserDO userDO = BeanUtil.toBean(userUpdateReqDTO, UserDO.class);
-        userDO.setPhone(phone);
+        userDO.setReviewerId(reviewerId);
         userMapper.update(userDO);
     }
 

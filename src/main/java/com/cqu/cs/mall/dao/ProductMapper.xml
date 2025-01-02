@@ -5,34 +5,53 @@
         <!--@mbg.generated-->
         <!--@Table message_record-->
         <id column="product_id" jdbcType="INTEGER" property="productId"/>
-        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="asin" jdbcType="VARCHAR" property="asin"/>
+        <result column="categories" jdbcType="VARCHAR" property="categories"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="title" jdbcType="INTEGER" property="price"/>
         <result column="price" jdbcType="INTEGER" property="price"/>
-        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
-        <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
+        <result column="im_url" jdbcType="INTEGER" property="imUrl"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="related" jdbcType="VARCHAR" property="related"/>
+        <result column="sales_rank" jdbcType="VARCHAR" property="salesRank"/>
+        <result column="item_id" jdbcType="VARCHAR" property="itemId"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-    <insert id="insert" parameterType="com.cqu.cs.mall.domain.ProductDO">
-        insert into products
+
+    <insert id="insert" parameterType="com.cqu.cs.mall.domain.ProductDO" useGeneratedKeys="true" keyProperty="productId">
+        insert into t_product
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            product_name,
+            <if test="asin != null and asin != ''">asin,</if>
+            <if test="categories != null and categories != ''">categories,</if>
             <if test="description != null and description != ''">description,</if>
+            title,
             price,
-            <if test="categoryId != null">category_id,</if>
-            <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+            <if test="imUrl != null and imUrl != ''">im_url,</if>
+            <if test="brand != null and brand != ''">brand,</if>
+            <if test="related != null and related != ''">related,</if>
+            <if test="salesRank != null and salesRank != ''">sales_rank,</if>
+            <if test="itemId != null">item_id,</if>
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
-            #{productName},
+            <if test="asin != null and asin != ''">#{asin},</if>
+            <if test="categories != null and categories != ''">#{categories},</if>
             <if test="description != null and description != ''">#{description},</if>
+            #{title},
             #{price},
-            <if test="categoryId != null">#{categoryId},</if>
-            <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+            <if test="imUrl != null and imUrl != ''">#{imUrl},</if>
+            <if test="brand != null and brand != ''">#{brand},</if>
+            <if test="related != null and related != ''">#{related},</if>
+            <if test="salesRank != null and salesRank != ''">#{salesRank},</if>
+            <if test="itemId != null">#{itemId},</if>
         </trim>
     </insert>
     <delete id="deleteById" parameterType="int">
-        DELETE FROM products WHERE product_id = #{productId}
+        DELETE FROM t_product WHERE product_id = #{productId}
     </delete>
+    <select id="selectById" resultType="ProductDO">
+        select * from t_product where product_id = #{productId}
+    </select>
 
 
 </mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.cs.mall.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.CommentDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="reviewer_id" jdbcType="VARCHAR" property="reviewerId"/>
+        <result column="asin" jdbcType="INTEGER" property="asin"/>
+        <result column="reviewer_name" jdbcType="INTEGER" property="reviewerName"/>
+        <result column="helpful" jdbcType="INTEGER" property="helpful"/>
+        <result column="review_text" jdbcType="TIMESTAMP" property="reviewText"/>
+        <result column="overall" jdbcType="TIMESTAMP" property="overall"/>
+        <result column="summary" jdbcType="TIMESTAMP" property="summary"/>
+        <result column="unix_review_time" jdbcType="TIMESTAMP" property="unixReviewTime"/>
+        <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <insert id="insert">
+        insert into t_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            reviewer_id,
+            asin,
+            reviewer_name,
+            <if test="helpful != null and helpful != ''">helpful</if>
+            review_text,
+            overall,
+            <if test="summary != null and summary != ''">summary</if>
+            <if test="unixReviewTime != null and unixReviewTime != ''">unix_review_time</if>
+            <if test="reviewTime != null and reviewTime != ''">review_time</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{reviewerId},
+            #{asin},
+            #{reviewerName},
+            <if test="helpful != null and helpful != ''">#{helpful}</if>
+            #{reviewText},
+            #{overall},
+            <if test="summary != null and summary != ''">#{summary}</if>
+            <if test="unixReviewTime != null and unixReviewTime != ''">#{unixReviewTime}</if>
+            <if test="reviewTime != null and reviewTime != ''">#{reviewTime}</if>
+        </trim>
+    </insert>
+    <delete id="deleteById">
+        delete from t_comment where id = #{id}
+    </delete>
+
+
+</mapper>
