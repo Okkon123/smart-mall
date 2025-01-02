@@ -2,7 +2,9 @@ package com.cqu.cs.mall.controller;
 
 import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.CreateOrderReqDTO;
+import com.cqu.cs.mall.dto.req.OrderPageReqDTO;
 import com.cqu.cs.mall.dto.resp.CreateOrderRespDTO;
+import com.cqu.cs.mall.dto.resp.OrderPageRespDTO;
 import com.cqu.cs.mall.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,8 @@ public class OrderController {
     }
 
     @GetMapping("/page")
-    public Result<Void> pageOrder() {
-        return null;
+    public Result<List<OrderPageRespDTO>> pageOrder(OrderPageReqDTO orderPageReqDTO) {
+        return Result.success(orderService.pageOrder(orderPageReqDTO));
     }
 
 

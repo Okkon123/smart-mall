@@ -1,11 +1,18 @@
 package com.cqu.cs.mall.controller;
 
+import com.cqu.cs.mall.domain.ProductDO;
+import com.cqu.cs.mall.dto.PageResult;
 import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.AddProductReqDTO;
 import com.cqu.cs.mall.dto.req.DeleteProductReqDTO;
+import com.cqu.cs.mall.dto.req.ProductPageReqDTO;
+import com.cqu.cs.mall.dto.resp.ProductPageRespDTO;
 import com.cqu.cs.mall.service.ProductService;
+import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -26,8 +33,8 @@ public class ProductController {
     }
 
     @GetMapping("page")
-    public Result<Void> pageProduct() {
-        return null;
+    public Result<List<ProductPageRespDTO>> pageProduct(ProductPageReqDTO productPageReqDTO) {
+        return Result.success(productService.pageQuery(productPageReqDTO));
     }
 
 }

@@ -7,7 +7,9 @@ import com.cqu.cs.mall.dao.OrderMapper;
 import com.cqu.cs.mall.domain.OrderDO;
 import com.cqu.cs.mall.domain.ProductDO;
 import com.cqu.cs.mall.dto.req.CreateOrderReqDTO;
+import com.cqu.cs.mall.dto.req.OrderPageReqDTO;
 import com.cqu.cs.mall.dto.resp.CreateOrderRespDTO;
+import com.cqu.cs.mall.dto.resp.OrderPageRespDTO;
 import com.cqu.cs.mall.service.OrderService;
 import com.cqu.cs.mall.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,8 @@ public class OrderServiceImpl implements OrderService {
                     .productId(productId)
                     .amount(productDO.getPrice())
                     .reviewerId(BaseContext.getCurrentToken())
+                    .title(productDO.getTitle())
+                    .imUrl(productDO.getImUrl())
                     .status(0)
                     .build();
             orderMapper.createOrder(orderDO);
@@ -47,5 +51,14 @@ public class OrderServiceImpl implements OrderService {
             res.add(createOrderRespDTO);
         }
         return res;
+    }
+
+    @Override
+    public List<OrderPageRespDTO> pageOrder(OrderPageReqDTO orderPageReqDTO) {
+        int pageSize = orderPageReqDTO.getPageSize();
+        int pageNum = orderPageReqDTO.getPageNum() > 0 ? orderPageReqDTO.getPageNum() : 1;
+        int offset = (pageNum - 1) * pageSize;
+        String reviewerId = BaseContext.getCurrentToken();
+        return orderMapper.pageQuery(offset, pageSize, reviewerId);
     }
 }

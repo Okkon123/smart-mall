@@ -21,3 +21,8 @@ mall:
     access-key-id: todo
     access-key-secret: todo
     bucket-name: web-skytakeaway
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

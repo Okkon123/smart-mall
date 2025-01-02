@@ -40,9 +40,18 @@
             <if test="reviewTime != null and reviewTime != ''">#{reviewTime}</if>
         </trim>
     </insert>
+
     <delete id="deleteById">
         delete from t_comment where id = #{id}
     </delete>
+
+    <select id="pageQuery" resultType="java.lang.String">
+        select
+            review_text
+        from t_comment
+        where asin = #{asin}
+        limit #{offset},#{pageSize}
+    </select>
 
 
 </mapper>

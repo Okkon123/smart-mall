@@ -5,6 +5,8 @@
         <id column="order_id" jdbcType="INTEGER" property="orderId"/>
         <result column="reviewer_id" jdbcType="VARCHAR" property="reviewerId"/>
         <result column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="im_url" jdbcType="VARCHAR" property="imUrl"/>
         <result column="amount" jdbcType="INTEGER" property="amount"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -16,14 +18,24 @@
             reviewer_id,
             product_id,
             amount,
+            <if test="title != null and title != ''">title,</if>
+            <if test="imUrl != null and imUrl != ''">im_url,</if>
             <if test="status != null">status,</if>
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             #{reviewerId},
             #{productId},
             #{amount},
+            <if test="title != null and title != ''"> #{title},</if>
+            <if test="imUrl != null and imUrl != ''">#{imUrl},</if>
             <if test="status != null"> #{status},</if>
         </trim>
     </insert>
+    <select id="pageQuery" resultType="com.cqu.cs.mall.dto.resp.OrderPageRespDTO">
+        select *
+        from t_order
+        where reviewer_id = #{reviewerId}
+        limit #{offset},#{pageSize}
+    </select>
 
 </mapper>

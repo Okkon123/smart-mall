@@ -49,8 +49,13 @@
     <delete id="deleteById" parameterType="int">
         DELETE FROM t_product WHERE product_id = #{productId}
     </delete>
+
     <select id="selectById" resultType="ProductDO">
         select * from t_product where product_id = #{productId}
+    </select>
+
+    <select id="pageQuery" resultType="com.cqu.cs.mall.dto.resp.ProductPageRespDTO">
+        select * from t_product limit #{offset},#{pageSize};
     </select>
 
 

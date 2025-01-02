@@ -9,10 +9,14 @@ import com.cqu.cs.mall.domain.CommentDO;
 import com.cqu.cs.mall.domain.ProductDO;
 import com.cqu.cs.mall.domain.UserDO;
 import com.cqu.cs.mall.dto.req.AddCommentReqDTO;
+import com.cqu.cs.mall.dto.req.CommentPageReqDTO;
 import com.cqu.cs.mall.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -43,5 +47,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(Integer commentId) {
         commentMapper.deleteById(commentId);
+    }
+
+    @Override
+    public List<String> pageComment(CommentPageReqDTO commentPageReqDTO) {
+        int pageSize = commentPageReqDTO.getPageSize();
+        int pageNum = commentPageReqDTO.getPageNum() > 0 ? commentPageReqDTO.getPageNum() : 1;
+        int offset = (pageNum - 1) * pageSize;
+        return commentMapper.pageQuery(offset, pageSize, commentPageReqDTO.getAsin());
     }
 }

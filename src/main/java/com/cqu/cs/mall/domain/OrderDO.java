@@ -34,6 +34,14 @@ public class OrderDO {
      */
     private int status;
     /**
+     * 产品名称
+     */
+    private String title;
+    /**
+     * 产品图片
+     */
+    private String imUrl;
+    /**
      * 创建时间
      */
     private Timestamp createTime;
