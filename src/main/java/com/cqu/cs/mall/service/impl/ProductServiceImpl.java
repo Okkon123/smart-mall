@@ -5,16 +5,12 @@ import cn.hutool.core.bean.BeanUtil;
 
 import com.cqu.cs.mall.dao.ProductMapper;
 import com.cqu.cs.mall.domain.ProductDO;
-import com.cqu.cs.mall.dto.PageResult;
 import com.cqu.cs.mall.dto.req.AddProductReqDTO;
 import com.cqu.cs.mall.dto.req.DeleteProductReqDTO;
 import com.cqu.cs.mall.dto.req.ProductPageReqDTO;
 import com.cqu.cs.mall.dto.resp.ProductPageRespDTO;
 import com.cqu.cs.mall.service.ProductService;
 import com.cqu.cs.mall.util.Snowflake;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
