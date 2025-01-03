@@ -13,4 +13,6 @@ public interface CommentMapper {
     int deleteById(Integer commentId);
 
     List<String> pageQuery(int offset, int pageSize, String asin);
+
+    int importComment(CommentDO comment);
 }

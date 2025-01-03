@@ -1,7 +1,9 @@
 package com.cqu.cs.mall.domain;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
@@ -9,19 +11,69 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class ProductDO {
-    private int productId;          // 商品id，主键
-    private String asin;            // 亚马逊标准识别码
-    private String categories;      // 种类
-    private String description;     // 描述
-    private String title;           // 标题
-    private int price;              // 价格
-    private String imUrl;           // 图片链接
-    private String brand;           // 品牌
-    private String related;         // 相关商品
+    /**
+     * 商品id，主键
+     */
+    private int productId;
+    /**
+     * 亚马逊标准识别码
+     */
+    @ExcelProperty("asin")
+    private String asin;
+    /**
+     * 种类
+     */
+    @ExcelProperty("categories")
+    private String categories;
+    /**
+     * 描述
+     */
+    @ExcelProperty("description")
+    private String description;
+    /**
+     * 标题
+     */
+    @ExcelProperty("title")
+    private String title;
+    /**
+     * 价格
+     */
+    @ExcelProperty("price")
+    private int price;
+    /**
+     * 图片链接
+     */
+    @ExcelProperty("imUrl")
+    private String imUrl;
+    /**
+     * 品牌
+     */
+    @ExcelProperty("brand")
+    private String brand;
+    /**
+     * 相关商品
+     */
+    @ExcelProperty("related")
+    private String related;
+    /**
+     *
+     */
+    @ExcelProperty("salesRank")
     private String salesRank;
+    /**
+     *
+     */
+    @ExcelProperty("itemId")
     private int itemId;
+    /**
+     *
+     */
     private Timestamp createTime;
+    /**
+     *
+     */
     private Timestamp updateTime;
 
     @Override

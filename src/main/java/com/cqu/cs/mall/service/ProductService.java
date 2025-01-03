@@ -16,4 +16,6 @@ public interface ProductService {
     ProductDO getProductById(int productId);
 
     List<ProductPageRespDTO> pageQuery(ProductPageReqDTO productPageReqDTO);
+
+    void saveProductBatch(List<ProductDO> cachedList);
 }

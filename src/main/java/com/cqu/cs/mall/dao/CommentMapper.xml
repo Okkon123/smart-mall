@@ -4,14 +4,14 @@
     <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.CommentDO">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="reviewer_id" jdbcType="VARCHAR" property="reviewerId"/>
-        <result column="asin" jdbcType="INTEGER" property="asin"/>
-        <result column="reviewer_name" jdbcType="INTEGER" property="reviewerName"/>
-        <result column="helpful" jdbcType="INTEGER" property="helpful"/>
-        <result column="review_text" jdbcType="TIMESTAMP" property="reviewText"/>
-        <result column="overall" jdbcType="TIMESTAMP" property="overall"/>
-        <result column="summary" jdbcType="TIMESTAMP" property="summary"/>
+        <result column="asin" jdbcType="VARCHAR" property="asin"/>
+        <result column="reviewer_name" jdbcType="VARCHAR" property="reviewerName"/>
+        <result column="helpful" jdbcType="VARCHAR" property="helpful"/>
+        <result column="review_text" jdbcType="VARCHAR" property="reviewText"/>
+        <result column="overall" jdbcType="INTEGER" property="overall"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
         <result column="unix_review_time" jdbcType="TIMESTAMP" property="unixReviewTime"/>
-        <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime"/>
+        <result column="review_time" jdbcType="VARCHAR" property="reviewTime"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
@@ -40,6 +40,29 @@
             <if test="reviewTime != null and reviewTime != ''">#{reviewTime}</if>
         </trim>
     </insert>
+    <insert id="importComment">
+        insert into t_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="'reviewerId' != null and 'reviewerId' != ''">reviewer_id,</if>
+            <if test="'asin' != null and 'asin' != ''">asin,</if>
+            <if test="'reviewerName' != null and 'reviewerName' != ''">reviewer_name,</if>
+            <if test="helpful != null and helpful != ''">helpful,</if>
+            <if test="'reviewText' != null and 'reviewText' != ''">review_text,</if>
+            <if test="'overall' != null">overall,</if>
+            <if test="summary != null and summary != ''">summary,</if>
+            <if test="unixReviewTime != null and unixReviewTime != ''">unix_review_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="'reviewerId' != null and 'reviewerId' != ''">#{reviewerId},</if>
+            <if test="'asin' != null and 'asin' != ''">#{asin},</if>
+            <if test="'reviewerName' != null and 'reviewerName' != ''">#{reviewerName},</if>
+            <if test="helpful != null and helpful != ''">#{helpful},</if>
+            <if test="'reviewText' != null and 'reviewText' != ''">#{reviewText},</if>
+            <if test="'overall' != null">#{overall},</if>
+            <if test="summary != null and summary != ''">#{summary},</if>
+            <if test="unixReviewTime != null and unixReviewTime != ''">#{unixReviewTime},</if>
+        </trim>
+    </insert>
 
     <delete id="deleteById">
         delete from t_comment where id = #{id}
@@ -52,6 +75,7 @@
         where asin = #{asin}
         limit #{offset},#{pageSize}
     </select>
+
 
 
 </mapper>

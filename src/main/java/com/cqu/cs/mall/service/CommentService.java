@@ -1,5 +1,6 @@
 package com.cqu.cs.mall.service;
 
+import com.cqu.cs.mall.domain.CommentDO;
 import com.cqu.cs.mall.dto.req.AddCommentReqDTO;
 import com.cqu.cs.mall.dto.req.CommentPageReqDTO;
 
@@ -11,4 +12,6 @@ public interface CommentService {
     void deleteComment(Integer commentId);
 
     List<String> pageComment(CommentPageReqDTO commentPageReqDTO);
+
+    void saveCommentBatch(List<CommentDO> cachedList);
 }

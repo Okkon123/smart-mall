@@ -48,5 +48,12 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.pageQuery(offset, pageSize);
     }
 
+    @Override
+    public void saveProductBatch(List<ProductDO> cachedList) {
+        for (ProductDO product : cachedList) {
+            productMapper.insert(product);
+        }
+    }
+
 
 }

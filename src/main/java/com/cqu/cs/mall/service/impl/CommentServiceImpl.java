@@ -56,4 +56,11 @@ public class CommentServiceImpl implements CommentService {
         int offset = (pageNum - 1) * pageSize;
         return commentMapper.pageQuery(offset, pageSize, commentPageReqDTO.getAsin());
     }
+
+    @Override
+    public void saveCommentBatch(List<CommentDO> cachedList) {
+        for (CommentDO comment : cachedList) {
+            commentMapper.importComment(comment);
+        }
+    }
 }

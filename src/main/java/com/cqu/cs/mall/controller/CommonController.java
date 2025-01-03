@@ -1,6 +1,7 @@
 package com.cqu.cs.mall.controller;
 
 import com.cqu.cs.mall.dto.Result;
+import com.cqu.cs.mall.service.CommonService;
 import com.cqu.cs.mall.util.AliOssUtil;
 import com.google.common.base.Throwables;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CommonController {
     private final AliOssUtil aliOssUtil;
+    private final CommonService commonService;
 
     @PostMapping("/upload")
     public Result<String> upload(MultipartFile file) {
@@ -35,17 +37,20 @@ public class CommonController {
     }
 
     @PostMapping("/importUserByExcel")
-    public Result<Void> importUserByExcel(MultipartFile file) {
+    public Result<Void> importUserByExcel(MultipartFile file) throws IOException {
+        commonService.importUserByExcel(file);
         return Result.success();
     }
 
     @PostMapping("/importCommentByExcel")
-    public Result<Void> importCommentByExcel(MultipartFile file) {
+    public Result<Void> importCommentByExcel(MultipartFile file) throws IOException {
+        commonService.importCommentByExcel(file);
         return Result.success();
     }
 
     @PostMapping("/importProductByExcel")
-    public Result<Void> importProductByExcel(MultipartFile file) {
+    public Result<Void> importProductByExcel(MultipartFile file) throws IOException {
+        commonService.importProductByExcel(file);
         return Result.success();
     }
 }

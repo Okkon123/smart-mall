@@ -8,7 +8,7 @@
         <result column="asin" jdbcType="VARCHAR" property="asin"/>
         <result column="categories" jdbcType="VARCHAR" property="categories"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
-        <result column="title" jdbcType="INTEGER" property="price"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="price" jdbcType="INTEGER" property="price"/>
         <result column="im_url" jdbcType="INTEGER" property="imUrl"/>
         <result column="brand" jdbcType="VARCHAR" property="brand"/>
@@ -25,8 +25,8 @@
             <if test="asin != null and asin != ''">asin,</if>
             <if test="categories != null and categories != ''">categories,</if>
             <if test="description != null and description != ''">description,</if>
-            title,
-            price,
+            <if test="title != null and title != ''">title,</if>
+            <if test="price != null and price != ''">price,</if>
             <if test="imUrl != null and imUrl != ''">im_url,</if>
             <if test="brand != null and brand != ''">brand,</if>
             <if test="related != null and related != ''">related,</if>
@@ -37,8 +37,8 @@
             <if test="asin != null and asin != ''">#{asin},</if>
             <if test="categories != null and categories != ''">#{categories},</if>
             <if test="description != null and description != ''">#{description},</if>
-            #{title},
-            #{price},
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="price != null and price != ''">#{price},</if>
             <if test="imUrl != null and imUrl != ''">#{imUrl},</if>
             <if test="brand != null and brand != ''">#{brand},</if>
             <if test="related != null and related != ''">#{related},</if>

@@ -8,6 +8,10 @@ spring:
     url: jdbc:mysql://114.115.208.175:3309/cqu
     username: root
     password: yunfuwuxiaoguanjia
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
 mybatis:
   #mapper配置文件
   #mapper-locations: com.cqu.cs.mall.dao.*.xml

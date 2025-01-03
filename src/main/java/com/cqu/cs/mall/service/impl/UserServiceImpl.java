@@ -11,9 +11,12 @@ import com.cqu.cs.mall.dto.req.UserRegisterReqDTO;
 import com.cqu.cs.mall.dto.req.UserUpdateReqDTO;
 import com.cqu.cs.mall.dto.resp.UserLoginRespDTO;
 import com.cqu.cs.mall.service.UserService;
+import com.cqu.cs.mall.util.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.cqu.cs.mall.convention.errorcode.BaseErrorCode.*;
 
@@ -56,6 +59,16 @@ public class UserServiceImpl implements UserService {
         UserDO userDO = BeanUtil.toBean(userUpdateReqDTO, UserDO.class);
         userDO.setReviewerId(reviewerId);
         userMapper.update(userDO);
+    }
+
+    @Override
+    public void saveUserBatch(List<UserDO> cachedList) {
+        for (UserDO userDO : cachedList) {
+            userDO.setPhone(Snowflake.getID());
+            userDO.setPassword(Snowflake.getID());
+            userDO.setReviewerName(Snowflake.getID());
+            userMapper.register(userDO);
+        }
     }
 
     private boolean hasPhone(String phone) {

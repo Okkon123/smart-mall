@@ -1,15 +1,17 @@
 package com.cqu.cs.mall.domain;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.sql.Timestamp;
 @Data
-@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class UserDO {
     /**
      * 主键id
@@ -18,6 +20,7 @@ public class UserDO {
     /**
      * 用户id
      */
+    @ExcelProperty("reviewerID")
     private String reviewerId;
     /**
      * 用户名
