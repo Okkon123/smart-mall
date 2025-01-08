@@ -37,6 +37,7 @@ public class CartController {
         return Result.success();
     }
     @PostMapping("/checkout")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<Void> cartCheckout(@RequestBody CartCheckoutReqDTO cartCheckoutReqDTO) {
         cartService.checkout(cartCheckoutReqDTO);
         return Result.success();
