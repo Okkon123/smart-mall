@@ -6,6 +6,7 @@ import com.cqu.cs.mall.util.AliOssUtil;
 import com.google.common.base.Throwables;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class CommonController {
     private final CommonService commonService;
 
     @PostMapping("/upload")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<String> upload(MultipartFile file) {
         log.info("文件上传：{}", file);
         try {
@@ -37,18 +39,21 @@ public class CommonController {
     }
 
     @PostMapping("/importUserByExcel")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<Void> importUserByExcel(MultipartFile file) throws IOException {
         commonService.importUserByExcel(file);
         return Result.success();
     }
 
     @PostMapping("/importCommentByExcel")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<Void> importCommentByExcel(MultipartFile file) throws IOException {
         commonService.importCommentByExcel(file);
         return Result.success();
     }
 
     @PostMapping("/importProductByExcel")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<Void> importProductByExcel(MultipartFile file) throws IOException {
         commonService.importProductByExcel(file);
         return Result.success();

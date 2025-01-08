@@ -19,11 +19,13 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/create")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<List<CreateOrderRespDTO>> createOrder(@RequestBody CreateOrderReqDTO param) {
         return Result.success(orderService.createOrder(param));
     }
 
     @GetMapping("/page")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<List<OrderPageRespDTO>> pageOrder(OrderPageReqDTO orderPageReqDTO) {
         return Result.success(orderService.pageOrder(orderPageReqDTO));
     }
