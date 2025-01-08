@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.cs.mall.dao.CartMapper">
+    <resultMap id="BaseResultMap" type="com.cqu.cs.mall.domain.CartDO">
+        <id column="cart_id" jdbcType="INTEGER" property="cartId"/>
+        <result column="reviewer_id" jdbcType="VARCHAR" property="reviewerId"/>
+        <result column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="asin" jdbcType="VARCHAR" property="asin"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="im_url" jdbcType="VARCHAR" property="imUrl"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <insert id="insert">
+        insert
+            into t_shopping_cart
+            (reviewer_id, product_id, asin, title, quantity, price, im_url)
+        values
+            (#{reviewerId}, #{productId}, #{asin}, #{title}, #{quantity}, #{price}, #{imUrl})
+    </insert>
+
+    <delete id="deleteById">
+        delete
+        from
+            t_shopping_cart
+        where
+            cart_id = #{cartId}
+    </delete>
+
+    <select id="pageQuery" resultType="com.cqu.cs.mall.dto.resp.CartPageRespDTO">
+        select
+            *
+        from
+            t_shopping_cart
+        where
+            reviewer_id = #{reviewerId}
+        limit #{offset}, #{pageSize}
+    </select>
+    <select id="selectById" resultType="com.cqu.cs.mall.domain.CartDO">
+        select
+            *
+        from
+            t_shopping_cart
+        where
+            cart_id = #{cartId}
+    </select>
+
+</mapper>

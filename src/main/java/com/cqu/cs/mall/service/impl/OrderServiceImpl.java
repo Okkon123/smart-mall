@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.cqu.cs.mall.context.BaseContext;
 import com.cqu.cs.mall.convention.exception.ClientException;
 import com.cqu.cs.mall.dao.OrderMapper;
+import com.cqu.cs.mall.domain.CartDO;
 import com.cqu.cs.mall.domain.OrderDO;
 import com.cqu.cs.mall.domain.ProductDO;
 import com.cqu.cs.mall.dto.req.CreateOrderReqDTO;
@@ -35,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
             }
             OrderDO orderDO = OrderDO.builder()
                     .productId(productId)
-                    .amount(productDO.getPrice())
+                    .price(productDO.getPrice())
                     .reviewerId(BaseContext.getCurrentToken())
                     .title(productDO.getTitle())
                     .imUrl(productDO.getImUrl())
@@ -60,5 +61,18 @@ public class OrderServiceImpl implements OrderService {
         int offset = (pageNum - 1) * pageSize;
         String reviewerId = BaseContext.getCurrentToken();
         return orderMapper.pageQuery(offset, pageSize, reviewerId);
+    }
+
+    @Override
+    public void createOrderByCart(CartDO cartDO) {
+        OrderDO orderDO = OrderDO.builder()
+                .reviewerId(cartDO.getReviewerId())
+                .productId(cartDO.getProductId())
+                .price(cartDO.getPrice())
+                .quantity(cartDO.getQuantity())
+                .title(cartDO.getTitle())
+                .imUrl(cartDO.getImUrl())
+                .build();
+        orderMapper.createOrder(orderDO);
     }
 }

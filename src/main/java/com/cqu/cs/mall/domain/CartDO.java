@@ -1,10 +1,6 @@
 package com.cqu.cs.mall.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -12,21 +8,26 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDO {
+@EqualsAndHashCode
+public class CartDO {
     /**
-     * 订单id
+     * 购物车id 主键
      */
-    private Integer orderId;
+    private Integer cartId;
     /**
      * 用户id
      */
     private String reviewerId;
     /**
-     * 产品id
+     * 亚马逊码
+     */
+    private String asin;
+    /**
+     * 商品id
      */
     private Integer productId;
     /**
-     * 商品单价
+     * 商品价格
      */
     private Integer price;
     /**
@@ -34,15 +35,11 @@ public class OrderDO {
      */
     private Integer quantity;
     /**
-     * 订单状态
-     */
-    private Integer status;
-    /**
-     * 产品名称
+     * 商品名称
      */
     private String title;
     /**
-     * 产品图片
+     * 商品图片链接
      */
     private String imUrl;
     /**
