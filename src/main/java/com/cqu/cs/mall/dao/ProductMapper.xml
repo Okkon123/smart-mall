@@ -84,5 +84,9 @@
         select * from t_product where asin = #{asin}
     </select>
 
+    <select id="getAllProductBrandType" resultType="java.lang.String">
+        select distinct brand from t_product;
+    </select>
+
 
 </mapper>
