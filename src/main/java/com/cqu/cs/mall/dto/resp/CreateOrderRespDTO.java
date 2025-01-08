@@ -11,7 +11,7 @@ public class CreateOrderRespDTO {
      */
     private int orderId;
     /**
-     * 总金额
+     * 单价
      */
     private Integer amount;
     /**

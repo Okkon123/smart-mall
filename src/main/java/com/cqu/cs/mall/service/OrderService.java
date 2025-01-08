@@ -1,5 +1,6 @@
 package com.cqu.cs.mall.service;
 
+import com.cqu.cs.mall.domain.CartDO;
 import com.cqu.cs.mall.dto.req.CreateOrderReqDTO;
 import com.cqu.cs.mall.dto.req.OrderPageReqDTO;
 import com.cqu.cs.mall.dto.resp.CreateOrderRespDTO;
@@ -11,4 +12,6 @@ public interface OrderService {
     List<CreateOrderRespDTO> createOrder(CreateOrderReqDTO param);
 
     List<OrderPageRespDTO> pageOrder(OrderPageReqDTO orderPageReqDTO);
+
+    void createOrderByCart(CartDO cartDO);
 }
