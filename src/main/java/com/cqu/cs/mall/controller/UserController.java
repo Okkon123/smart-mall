@@ -4,6 +4,7 @@ import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.UserLoginReqDTO;
 import com.cqu.cs.mall.dto.req.UserRegisterReqDTO;
 import com.cqu.cs.mall.dto.req.UserUpdateReqDTO;
+import com.cqu.cs.mall.dto.resp.UserInfoRespDTO;
 import com.cqu.cs.mall.dto.resp.UserLoginRespDTO;
 import com.cqu.cs.mall.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,10 @@ public class UserController {
     public Result<Void> update(@RequestBody UserUpdateReqDTO userUpdateReqDTO) {
         userService.update(userUpdateReqDTO);
         return Result.success();
+    }
+
+    @GetMapping("/info")
+    public Result<UserInfoRespDTO> info() {
+        return Result.success(userService.info());
     }
 }

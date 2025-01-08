@@ -55,7 +55,33 @@
     </select>
 
     <select id="pageQuery" resultType="com.cqu.cs.mall.dto.resp.ProductPageRespDTO">
-        select * from t_product limit #{offset},#{pageSize};
+        select
+            *
+        from
+            t_product
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%',#{title},'%')
+            </if>
+            <if test="brand != null and brand != ''">
+                and brand = #{brand}
+            </if>
+            <if test="lowBound != null">
+                and price >= #{lowBound}
+            </if>
+            <if test="highBound != null">
+                and price &lt;= #{highBound}
+            </if>
+        </where>
+        limit #{offset},#{pageSize};
+    </select>
+
+    <select id="getAllProductBrandType" resultType="java.lang.String">
+        select distinct brand from t_product;
+    </select>
+
+    <select id="selectByAsin" resultType="com.cqu.cs.mall.domain.ProductDO">
+        select * from t_product where asin = #{asin}
     </select>
 
 

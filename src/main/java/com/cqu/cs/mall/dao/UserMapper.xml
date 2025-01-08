@@ -10,6 +10,10 @@
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
@@ -28,6 +32,18 @@
             </if>
             <if test="reviewerName != null and reviewerName != ''">
                 reviewer_name = #{reviewerName},
+            </if>
+            <if test="gender != null and gender != ''">
+                    gender = #{gender},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                    avatar = #{avatar},
+            </if>
+            <if test="address != null and address != ''">
+                    address = #{address},
+            </if>
+            <if test="age != null">
+                    age = #{age},
             </if>
         </set>
         where reviewer_id = #{reviewerId}
