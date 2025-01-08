@@ -9,6 +9,7 @@ import com.cqu.cs.mall.domain.UserDO;
 import com.cqu.cs.mall.dto.req.UserLoginReqDTO;
 import com.cqu.cs.mall.dto.req.UserRegisterReqDTO;
 import com.cqu.cs.mall.dto.req.UserUpdateReqDTO;
+import com.cqu.cs.mall.dto.resp.UserInfoRespDTO;
 import com.cqu.cs.mall.dto.resp.UserLoginRespDTO;
 import com.cqu.cs.mall.service.UserService;
 import com.cqu.cs.mall.util.Snowflake;
@@ -69,6 +70,12 @@ public class UserServiceImpl implements UserService {
             userDO.setReviewerName(Snowflake.getID());
             userMapper.register(userDO);
         }
+    }
+
+    @Override
+    public UserInfoRespDTO info() {
+        UserDO userDO = userMapper.selectByReviewerId(BaseContext.getCurrentToken());
+        return BeanUtil.toBean(userDO, UserInfoRespDTO.class);
     }
 
     private boolean hasPhone(String phone) {

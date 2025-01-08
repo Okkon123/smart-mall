@@ -4,6 +4,8 @@ import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.AddProductReqDTO;
 import com.cqu.cs.mall.dto.req.DeleteProductReqDTO;
 import com.cqu.cs.mall.dto.req.ProductPageReqDTO;
+import com.cqu.cs.mall.dto.resp.ProductBrandTypeRespDTO;
+import com.cqu.cs.mall.dto.resp.ProductInfoRespDTO;
 import com.cqu.cs.mall.dto.resp.ProductPageRespDTO;
 import com.cqu.cs.mall.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,19 @@ public class ProductController {
 
     @GetMapping("page")
     public Result<List<ProductPageRespDTO>> pageProduct(ProductPageReqDTO productPageReqDTO) {
+        // TODO
         return Result.success(productService.pageQuery(productPageReqDTO));
     }
+
+    @GetMapping("brands")
+    public Result<ProductBrandTypeRespDTO> getAllProductBrandType() {
+        return Result.success(productService.getAllProductBrandType());
+    }
+
+    @GetMapping("info")
+    public Result<ProductInfoRespDTO> getProductInfoById(Integer productId) {
+        return Result.success(productService.getProductInfoById(productId));
+    }
+
 
 }

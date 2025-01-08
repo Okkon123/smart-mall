@@ -4,6 +4,7 @@ import com.cqu.cs.mall.domain.UserDO;
 import com.cqu.cs.mall.dto.req.UserLoginReqDTO;
 import com.cqu.cs.mall.dto.req.UserRegisterReqDTO;
 import com.cqu.cs.mall.dto.req.UserUpdateReqDTO;
+import com.cqu.cs.mall.dto.resp.UserInfoRespDTO;
 import com.cqu.cs.mall.dto.resp.UserLoginRespDTO;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserService {
     void update(UserUpdateReqDTO userUpdateReqDTO);
 
     void saveUserBatch(List<UserDO> cachedList);
+
+    UserInfoRespDTO info();
 }

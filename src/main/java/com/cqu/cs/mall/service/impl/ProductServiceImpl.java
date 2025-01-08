@@ -8,6 +8,8 @@ import com.cqu.cs.mall.domain.ProductDO;
 import com.cqu.cs.mall.dto.req.AddProductReqDTO;
 import com.cqu.cs.mall.dto.req.DeleteProductReqDTO;
 import com.cqu.cs.mall.dto.req.ProductPageReqDTO;
+import com.cqu.cs.mall.dto.resp.ProductBrandTypeRespDTO;
+import com.cqu.cs.mall.dto.resp.ProductInfoRespDTO;
 import com.cqu.cs.mall.dto.resp.ProductPageRespDTO;
 import com.cqu.cs.mall.service.ProductService;
 import com.cqu.cs.mall.util.Snowflake;
@@ -53,6 +55,20 @@ public class ProductServiceImpl implements ProductService {
         for (ProductDO product : cachedList) {
             productMapper.insert(product);
         }
+    }
+
+    @Override
+    public ProductBrandTypeRespDTO getAllProductBrandType() {
+        List<String> list =  productMapper.getAllProductBrandType();
+        ProductBrandTypeRespDTO res = new ProductBrandTypeRespDTO();
+        res.setBrandTypeList(list);
+        return res;
+    }
+
+    @Override
+    public ProductInfoRespDTO getProductInfoById(Integer productId) {
+        ProductDO product = productMapper.selectById(productId);
+        return BeanUtil.copyProperties(product, ProductInfoRespDTO.class);
     }
 
 

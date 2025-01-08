@@ -39,6 +39,22 @@ public class UserDO {
      */
     private String phone;
     /**
+     * 年龄
+     */
+    private Integer age;
+    /**
+     * 性别
+     */
+    private String gender;
+    /**
+     * 头像地址
+     */
+    private String avatar;
+    /**
+     * 地址
+     */
+    private String address;
+    /**
      * 创建时间
      */
     private Timestamp createTime;
@@ -48,17 +64,4 @@ public class UserDO {
     private Timestamp updateTime;
 
 
-    @Override
-    public String toString() {
-        return "UserDO{" +
-                "id=" + id +
-                ", reviewerId='" + reviewerId + '\'' +
-                ", reviewerName='" + reviewerName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 }
