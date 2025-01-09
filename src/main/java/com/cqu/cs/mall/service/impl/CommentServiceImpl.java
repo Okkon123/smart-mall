@@ -10,6 +10,7 @@ import com.cqu.cs.mall.domain.ProductDO;
 import com.cqu.cs.mall.domain.UserDO;
 import com.cqu.cs.mall.dto.req.AddCommentReqDTO;
 import com.cqu.cs.mall.dto.req.CommentPageReqDTO;
+import com.cqu.cs.mall.dto.resp.CommentPageRespDTO;
 import com.cqu.cs.mall.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<String> pageComment(CommentPageReqDTO commentPageReqDTO) {
+    public List<CommentPageRespDTO> pageComment(CommentPageReqDTO commentPageReqDTO) {
         int pageSize = commentPageReqDTO.getPageSize();
         int pageNum = commentPageReqDTO.getPageNum() > 0 ? commentPageReqDTO.getPageNum() : 1;
         int offset = (pageNum - 1) * pageSize;

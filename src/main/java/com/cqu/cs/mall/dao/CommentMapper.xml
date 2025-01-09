@@ -68,9 +68,12 @@
         delete from t_comment where id = #{id}
     </delete>
 
-    <select id="pageQuery" resultType="java.lang.String">
+    <select id="pageQuery" resultType="com.cqu.cs.mall.dto.resp.CommentPageRespDTO">
         select
-            review_text
+            review_text,
+            overall,
+            review_time,
+            reviewer_id
         from t_comment
         where asin = #{asin}
         limit #{offset},#{pageSize}

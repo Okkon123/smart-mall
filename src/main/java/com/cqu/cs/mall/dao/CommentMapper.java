@@ -1,6 +1,7 @@
 package com.cqu.cs.mall.dao;
 
 import com.cqu.cs.mall.domain.CommentDO;
+import com.cqu.cs.mall.dto.resp.CommentPageRespDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ public interface CommentMapper {
 
     int deleteById(Integer commentId);
 
-    List<String> pageQuery(int offset, int pageSize, String asin);
+    List<CommentPageRespDTO> pageQuery(int offset, int pageSize, String asin);
 
     int importComment(CommentDO comment);
 }

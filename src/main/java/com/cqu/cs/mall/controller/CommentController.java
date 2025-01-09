@@ -3,6 +3,7 @@ package com.cqu.cs.mall.controller;
 import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.AddCommentReqDTO;
 import com.cqu.cs.mall.dto.req.CommentPageReqDTO;
+import com.cqu.cs.mall.dto.resp.CommentPageRespDTO;
 import com.cqu.cs.mall.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class CommentController {
 
     @GetMapping("/page")
     @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
-    public Result<List<String>> pageComment(CommentPageReqDTO commentPageReqDTO) {
+    public Result<List<CommentPageRespDTO>> pageComment(CommentPageReqDTO commentPageReqDTO) {
         return Result.success(commentService.pageComment(commentPageReqDTO));
     }
 }
