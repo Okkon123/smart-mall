@@ -78,7 +78,14 @@
         where asin = #{asin}
         limit #{offset},#{pageSize}
     </select>
-
+    <select id="pageQueryAllComment" resultType="com.cqu.cs.mall.domain.CommentDO">
+        select
+            *
+        from
+            t_comment
+        where
+            reviewer_id = #{reviewerId}
+    </select>
 
 
 </mapper>

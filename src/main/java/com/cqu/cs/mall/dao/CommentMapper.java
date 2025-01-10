@@ -16,4 +16,6 @@ public interface CommentMapper {
     List<CommentPageRespDTO> pageQuery(int offset, int pageSize, String asin);
 
     int importComment(CommentDO comment);
+
+    List<CommentDO> pageQueryAllComment(int offset, int pageSize, String reviewerId);
 }

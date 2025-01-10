@@ -2,7 +2,9 @@ package com.cqu.cs.mall.controller;
 
 import com.cqu.cs.mall.dto.Result;
 import com.cqu.cs.mall.dto.req.AddCommentReqDTO;
+import com.cqu.cs.mall.dto.req.AllCommentPageReqDTO;
 import com.cqu.cs.mall.dto.req.CommentPageReqDTO;
+import com.cqu.cs.mall.dto.resp.AllCommentPageRespDTO;
 import com.cqu.cs.mall.dto.resp.CommentPageRespDTO;
 import com.cqu.cs.mall.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +39,10 @@ public class CommentController {
     @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
     public Result<List<CommentPageRespDTO>> pageComment(CommentPageReqDTO commentPageReqDTO) {
         return Result.success(commentService.pageComment(commentPageReqDTO));
+    }
+    @GetMapping("/pageAll")
+    @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
+    public Result<List<AllCommentPageRespDTO>> pageAllComment(AllCommentPageReqDTO allCommentPageReqDTO) {
+        return Result.success(commentService.pageAllComment(allCommentPageReqDTO));
     }
 }
